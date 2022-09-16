@@ -21,9 +21,6 @@ const reset = () => {
     toggle = true;
     playerOne = [];
     playerTwo = [];
-    player1score = 0;
-    player2score = 0;
-
 }
 
 squareEl.forEach((square) => {
@@ -47,13 +44,8 @@ squareEl.forEach((square) => {
                 playerOne.push(e.target.id);
                 for (let i = 0; i < 8; i++) {
                     if (checker(playerOne, target[i])) {
-                        click = 0;
-                        clicked = 0;
-                        toggle = true;
                         playerOne = [];
                         playerTwo = [];
-                        player1score = 0;
-                        player2score = 0;
                         resultsEl.innerHTML = 'Player one win!';
                         resultsEl.style.color = "red";
                         player1score++;
@@ -74,13 +66,8 @@ squareEl.forEach((square) => {
                 playerTwo.push(e.target.id);
                 for (let i = 0; i < 8; i++) {
                     if (checker(playerTwo, target[i])) {
-                        click = 0;
-                        clicked = 0;
-                        toggle = true;
                         playerOne = [];
                         playerTwo = [];
-                        player1score = 0;
-                        player2score = 0;
                         resultsEl.innerHTML = 'Player two win!';
                         resultsEl.style.color = "yellow";
                         player2score++;

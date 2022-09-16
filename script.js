@@ -2,6 +2,7 @@ const squareEl = document.querySelectorAll('.square');
 const player1El = document.getElementById('player1');
 const player2El = document.getElementById('player2');
 const resetEl = document.getElementById('reset')
+const resultsEl = document.querySelector('.results')
 
 let click = 0;
 let clicked = 0;
@@ -38,16 +39,18 @@ squareEl.forEach((square) => {
                 playerOne.push(e.target.id)
                 for (let i = 0; i < 8; i++) {
                     if (checker(playerOne, target[i])) {
-                        playerOne = []
-                        playerTwo = []
+                        playerOne = [];
+                        playerTwo = [];
                         console.log("PLAYER ONE WIN");
+                        resultsEl.innerHTML = 'Player one win!'
+                        resultsEl.style.color = "red"
                         player1score++
                         player1El.innerHTML = `PLAYER 1 : ${player1score}`
                         setTimeout(function () {
                             squareEl.forEach((square) => {
                                 square.style.backgroundImage = ""
                             })
-                        }, 1000);
+                        }, 2000);
                     };
                 }
             }
@@ -61,13 +64,15 @@ squareEl.forEach((square) => {
                         playerOne = []
                         playerTwo = []
                         console.log("PLAYER TWO WIN");
+                        resultsEl.innerHTML = 'Player two win!'
+                        resultsEl.style.color = "yellow"
                         player2score++
                         player2El.innerHTML = `PLAYER 2 : ${player2score}`
                         setTimeout(function () {
                             squareEl.forEach((square) => {
                                 square.style.backgroundImage = ""
                             })
-                        }, 1000);
+                        }, 2000);
                     };
                 }
             }

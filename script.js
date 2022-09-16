@@ -3,17 +3,33 @@ const player1El = document.getElementById('player1');
 const player2El = document.getElementById('player2');
 const resetEl = document.getElementById('reset')
 
-let toggle = true;
 let click = 0;
-
+let clicked = 0;
+let toggle = true;
 let playerOne = [];
 let playerTwo = [];
 let player1score = 0;
 let player2score = 0;
 
-squareEl.forEach((square) => {
+const reset = () => {
+    squareEl.forEach((square) => {
+        square.style.backgroundImage = ""
+    })
+    playerOne = [];
+    playerTwo = [];
 
+}
+
+squareEl.forEach((square) => {
     square.addEventListener('click', () => {
+        clicked++
+        console.log(clicked);
+        if (clicked === 9) {
+            setTimeout(function () {
+                reset()
+            }, 2000);
+        }
+
         square.style.backgroundRepeat = "no-repeat"
         square.style.backgroundPosition = "center"
         if (toggle) {
@@ -72,9 +88,11 @@ squareEl.forEach((square) => {
 });
 
 resetEl.addEventListener('click', () => {
-    squareEl.forEach((square) => {
-        square.style.backgroundImage = ""
-    })
+    click = 0;
+    clicked = 0;
+    toggle = true;
     playerOne = [];
     playerTwo = [];
+    player1score = 0;
+    player2score = 0;
 })

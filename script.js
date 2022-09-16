@@ -16,18 +16,15 @@ const reset = () => {
     squareEl.forEach((square) => {
         square.style.backgroundImage = ""
     })
-    click = 0;
-    clicked = 0;
-    toggle = true;
     playerOne = [];
     playerTwo = [];
+
 }
 
 squareEl.forEach((square) => {
     square.addEventListener('click', () => {
         clicked++;
         if (clicked === 9) {
-
             resultsEl.innerHTML = 'Draw!';
             resultsEl.style.color = "white";
             setTimeout(function () {

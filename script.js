@@ -1,8 +1,8 @@
 const squareEl = document.querySelectorAll('.square');
 const player1El = document.getElementById('player1');
 const player2El = document.getElementById('player2');
-const resetEl = document.getElementById('reset')
-const resultsEl = document.querySelector('.results')
+const resetEl = document.getElementById('reset');
+const resultsEl = document.querySelector('.results');
 
 let click = 0;
 let clicked = 0;
@@ -16,73 +16,86 @@ const reset = () => {
     squareEl.forEach((square) => {
         square.style.backgroundImage = ""
     })
+    click = 0;
+    clicked = 0;
+    toggle = true;
     playerOne = [];
     playerTwo = [];
+    player1score = 0;
+    player2score = 0;
 
 }
 
 squareEl.forEach((square) => {
     square.addEventListener('click', () => {
-        clicked++
-        console.log(clicked);
+        clicked++;
         if (clicked === 9) {
-            resultsEl.innerHTML = 'Draw!'
-            resultsEl.style.color = "white"
+
+            resultsEl.innerHTML = 'Draw!';
+            resultsEl.style.color = "white";
             setTimeout(function () {
-                reset()
-                resultsEl.innerHTML = ''
+                reset();
+                resultsEl.innerHTML = '';
             }, 2000);
         }
 
-        square.style.backgroundRepeat = "no-repeat"
-        square.style.backgroundPosition = "center"
+        square.style.backgroundRepeat = "no-repeat";
+        square.style.backgroundPosition = "center";
         if (toggle) {
-            square.style.backgroundImage = "url(assets/red.png)"
+            square.style.backgroundImage = "url(assets/red.png)";
             window.onclick = e => {
-                playerOne.push(e.target.id)
+                playerOne.push(e.target.id);
                 for (let i = 0; i < 8; i++) {
                     if (checker(playerOne, target[i])) {
+                        click = 0;
+                        clicked = 0;
+                        toggle = true;
                         playerOne = [];
                         playerTwo = [];
-                        console.log("PLAYER ONE WIN");
-                        resultsEl.innerHTML = 'Player one win!'
-                        resultsEl.style.color = "red"
-                        player1score++
-                        player1El.innerHTML = `PLAYER 1 : ${player1score}`
+                        player1score = 0;
+                        player2score = 0;
+                        resultsEl.innerHTML = 'Player one win!';
+                        resultsEl.style.color = "red";
+                        player1score++;
+                        player1El.innerHTML = `PLAYER 1 : ${player1score}`;
                         setTimeout(function () {
                             squareEl.forEach((square) => {
-                                square.style.backgroundImage = ""
-                                resultsEl.innerHTML = ''
+                                square.style.backgroundImage = "";
+                                resultsEl.innerHTML = '';
                             })
                         }, 2000);
                     };
-                }
-            }
-            toggle = !toggle
+                };
+            };
+            toggle = !toggle;
         } else {
-            square.style.backgroundImage = "url(assets/yellow.png)"
+            square.style.backgroundImage = "url(assets/yellow.png)";
             window.onclick = e => {
-                playerTwo.push(e.target.id)
+                playerTwo.push(e.target.id);
                 for (let i = 0; i < 8; i++) {
                     if (checker(playerTwo, target[i])) {
-                        playerOne = []
-                        playerTwo = []
-                        console.log("PLAYER TWO WIN");
-                        resultsEl.innerHTML = 'Player two win!'
-                        resultsEl.style.color = "yellow"
-                        player2score++
-                        player2El.innerHTML = `PLAYER 2 : ${player2score}`
+                        click = 0;
+                        clicked = 0;
+                        toggle = true;
+                        playerOne = [];
+                        playerTwo = [];
+                        player1score = 0;
+                        player2score = 0;
+                        resultsEl.innerHTML = 'Player two win!';
+                        resultsEl.style.color = "yellow";
+                        player2score++;
+                        player2El.innerHTML = `PLAYER 2 : ${player2score}`;
                         setTimeout(function () {
                             squareEl.forEach((square) => {
-                                square.style.backgroundImage = ""
-                                resultsEl.innerHTML = ''
-                            })
+                                square.style.backgroundImage = "";
+                                resultsEl.innerHTML = '';
+                            });
                         }, 2000);
                     };
-                }
-            }
-            toggle = !toggle
-        }
+                };
+            };
+            toggle = !toggle;
+        };
 
         let checker = (arr, target) => target.every(v => arr.includes(v));
         target = [
@@ -93,8 +106,8 @@ squareEl.forEach((square) => {
             ['2', '5', '8'],
             ['3', '6', '9'],
             ['1', '5', '9'],
-            ['7', '5', '3']]
-    })
+            ['7', '5', '3']];
+    });
 });
 
 resetEl.addEventListener('click', () => {

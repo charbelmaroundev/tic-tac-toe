@@ -26,8 +26,11 @@ squareEl.forEach((square) => {
         clicked++
         console.log(clicked);
         if (clicked === 9) {
+            resultsEl.innerHTML = 'Draw!'
+            resultsEl.style.color = "white"
             setTimeout(function () {
                 reset()
+                resultsEl.innerHTML = ''
             }, 2000);
         }
 
@@ -49,6 +52,7 @@ squareEl.forEach((square) => {
                         setTimeout(function () {
                             squareEl.forEach((square) => {
                                 square.style.backgroundImage = ""
+                                resultsEl.innerHTML = ''
                             })
                         }, 2000);
                     };
@@ -71,6 +75,7 @@ squareEl.forEach((square) => {
                         setTimeout(function () {
                             squareEl.forEach((square) => {
                                 square.style.backgroundImage = ""
+                                resultsEl.innerHTML = ''
                             })
                         }, 2000);
                     };

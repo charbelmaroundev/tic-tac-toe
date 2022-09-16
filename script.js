@@ -10,7 +10,31 @@ const playerTwo = []
 squareEl.forEach((square) => {
 
     square.addEventListener('click', () => {
-
+        square.style.backgroundRepeat = "no-repeat"
+        square.style.backgroundPosition = "center"
+        if (toggle) {
+            square.style.backgroundImage = "url(assets/red.png)"
+            window.onclick = e => {
+                playerOne.push(e.target.id)
+                for (let i = 0; i < 8; i++) {
+                    if (checker(playerOne, target[i])) {
+                        console.log("PLAYER ONE WIN");
+                    };
+                }
+            }
+            toggle = !toggle
+        } else {
+            square.style.backgroundImage = "url(assets/yellow.png)"
+            window.onclick = e => {
+                playerTwo.push(e.target.id)
+                for (let i = 0; i < 8; i++) {
+                    if (checker(playerTwo, target[i])) {
+                        console.log("PLAYER TWO WIN");
+                    };
+                }
+            }
+            toggle = !toggle
+        }
 
         let checker = (arr, target) => target.every(v => arr.includes(v));
         target = [
@@ -22,40 +46,6 @@ squareEl.forEach((square) => {
             ['3', '6', '9'],
             ['1', '5', '9'],
             ['7', '5', '3']]
-
-        for (let i = 0; i < 8; i++) {
-            if (checker(playerOne, target[i])) {
-                console.log("PLAYER ONE WIN");
-            };
-        }
-
-        for (let i = 0; i < 8; i++) {
-            if (checker(playerTwo, target[i])) {
-                console.log("PLAYER TWO WIN");
-            };
-        }
-
-        square.style.backgroundRepeat = "no-repeat"
-        square.style.backgroundPosition = "center"
-        if (toggle) {
-            square.style.backgroundImage = "url(assets/red.png)"
-            window.onclick = e => {
-                playerOne.push(e.target.id)
-            }
-            toggle = !toggle
-        } else {
-            square.style.backgroundImage = "url(assets/yellow.png)"
-            window.onclick = e => {
-                playerTwo.push(e.target.id)
-            }
-            toggle = !toggle
-        }
-
-
-
-
-
-
     })
 });
 

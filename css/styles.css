@@ -28,3 +28,11 @@ body {
     color: #AAA;
     cursor: pointer;
 }
+
+h1 {
+    margin: 1rem;
+}
+
+button {
+    margin: 1rem;
+}

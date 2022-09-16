@@ -1,11 +1,15 @@
 const squareEl = document.querySelectorAll('.square');
-const el1 = document.getElementById('1')
+const player1El = document.getElementById('player1');
+const player2El = document.getElementById('player2');
+const resetEl = document.getElementById('reset')
 
 let toggle = true;
 let click = 0;
 
-const playerOne = []
-const playerTwo = []
+let playerOne = [];
+let playerTwo = [];
+let player1score = 0;
+let player2score = 0;
 
 squareEl.forEach((square) => {
 
@@ -18,13 +22,16 @@ squareEl.forEach((square) => {
                 playerOne.push(e.target.id)
                 for (let i = 0; i < 8; i++) {
                     if (checker(playerOne, target[i])) {
+                        playerOne = []
+                        playerTwo = []
                         console.log("PLAYER ONE WIN");
-
+                        player1score++
+                        player1El.innerHTML = `PLAYER 1 : ${player1score}`
                         setTimeout(function () {
                             squareEl.forEach((square) => {
                                 square.style.backgroundImage = ""
                             })
-                        }, 2000);
+                        }, 1000);
                     };
                 }
             }
@@ -35,13 +42,16 @@ squareEl.forEach((square) => {
                 playerTwo.push(e.target.id)
                 for (let i = 0; i < 8; i++) {
                     if (checker(playerTwo, target[i])) {
+                        playerOne = []
+                        playerTwo = []
                         console.log("PLAYER TWO WIN");
-
+                        player2score++
+                        player2El.innerHTML = `PLAYER 2 : ${player2score}`
                         setTimeout(function () {
                             squareEl.forEach((square) => {
                                 square.style.backgroundImage = ""
                             })
-                        }, 2000);
+                        }, 1000);
                     };
                 }
             }
@@ -61,3 +71,10 @@ squareEl.forEach((square) => {
     })
 });
 
+resetEl.addEventListener('click', () => {
+    squareEl.forEach((square) => {
+        square.style.backgroundImage = ""
+    })
+    playerOne = [];
+    playerTwo = [];
+})

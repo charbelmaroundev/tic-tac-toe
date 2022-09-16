@@ -19,6 +19,12 @@ squareEl.forEach((square) => {
                 for (let i = 0; i < 8; i++) {
                     if (checker(playerOne, target[i])) {
                         console.log("PLAYER ONE WIN");
+
+                        setTimeout(function () {
+                            squareEl.forEach((square) => {
+                                square.style.backgroundImage = ""
+                            })
+                        }, 2000);
                     };
                 }
             }
@@ -30,6 +36,12 @@ squareEl.forEach((square) => {
                 for (let i = 0; i < 8; i++) {
                     if (checker(playerTwo, target[i])) {
                         console.log("PLAYER TWO WIN");
+
+                        setTimeout(function () {
+                            squareEl.forEach((square) => {
+                                square.style.backgroundImage = ""
+                            })
+                        }, 2000);
                     };
                 }
             }
